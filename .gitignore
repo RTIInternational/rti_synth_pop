@@ -88,7 +88,8 @@ target/
 *.qgz
 *.docx
 .pytask/
-/notebooks/**
+notebooks/**
 .pytask/file_hashes.json
 .pytask/pytask.sqlite3
 .DS_Store
+.vscode/**
