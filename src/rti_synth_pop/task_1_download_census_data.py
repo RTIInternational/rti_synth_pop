@@ -14,6 +14,7 @@ import osgeo  # noqa
 import censusdata
 import pandas as pd
 from pytask import Product, mark, task
+import rasterio
 from rasterio.merge import merge as rio_merge
 from tqdm import tqdm
 
@@ -129,9 +130,25 @@ def task_merge_landscan(
                 z2.extract(file, raw_data_dir)
 
     file_path_list = [raw_data_dir / file for file in file_list]
+    
+    src_files_to_merge = [rasterio.open(file) for file in file_path_list]
+    merged_raster, merged_transform = rio_merge(src_files_to_merge)
+    
+    for src in src_files_to_merge:
+        src.close()
+    
+    output_meta = src_files_to_merge[0].meta.copy()
+    
+    output_meta.update({
+        "driver": "GTiff",
+        "height": merged_raster.shape[1],
+        "width": merged_raster.shape[2],
+        "transform": merged_transform
+    })
 
-    _ = rio_merge(file_path_list, dst_path=output_path)
-
+    with rasterio.open(output_path, "w", **output_meta) as dest:
+        dest.write(merged_raster)
+    
     [file.unlink() for file in file_path_list]
 
 
