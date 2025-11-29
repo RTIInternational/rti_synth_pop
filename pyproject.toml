@@ -10,7 +10,7 @@ where = ["src"]
 
 [project]
 name = "rti-synth-pop"
-version = "0.1.0"
+version = "0.1.1"
 description = "rti_synth_pop synthetic population generator"
 readme = "README.md"
 requires-python = ">=3.11"

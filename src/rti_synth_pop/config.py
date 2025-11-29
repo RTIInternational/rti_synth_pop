@@ -81,7 +81,7 @@ def age_map(column):
     )
 
 
-ethnicity_labels = ["hispanic", "not_hispanic"]
+ethnicity_labels = ["not_hispanic", "hispanic"]
 
 
 def ethnicity_map(column):

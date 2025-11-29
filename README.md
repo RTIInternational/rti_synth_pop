@@ -65,10 +65,6 @@ Currently, the installation of the `rti_synth_pop` module is included in the env
 
 To move beyond notebook prototyping, all reusable code should go into the `rti_synth_pop/` folder package. To use that package inside your project, install the project's module in editable mode, so you can edit files in the `rti_synth_pop` folder and use the modules inside your notebooks :
 
-```bash
-pip install --editable .
-```
-
 To use the module inside your notebooks, add `%autoreload` at the top of your notebook :
 
 ```python
@@ -99,7 +95,7 @@ data/processed    <- final synthetic population files (a person and household fi
 ## Execution
 This project uses [pytask](https://pytask-dev.readthedocs.io/en/stable/) to execute a series of tasks for creation of a synthetic populations. Once you have installed and activated the rti_synth_pop environment and are in root directory for of this cloned repo simply invoke:
 
-`pytask` 
+`uv run pytask` 
 
 on the command line to execute all tasks in order for each state and year in config.py.
 
