@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=77.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[project]
+name = "rti-synth-pop"
+version = "0.1.0"
+description = "rti_synth_pop synthetic population generator"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "CC-BY-NC-SA-4.0"
+authors = [
+    {name = "Nick Kruskamp", email = "nfkruskamp@gmail.com"},
+    {name = "Caroline Kery", email = "ckery@rti.org"},
+    {name = "James Rineer", email = "jrin@rti.org"},
+]
+urls = {homepage = "https://github.com/RTIInternational/rti_synth_pop"}
+dependencies = [
+    "gdal>=3.8.4",
+    "matplotlib",
+    "missingno",
+    "numpy",
+    "pandas",
+    "pandas-flavor",
+    "pandas-profiling",
+    "pyprojroot",
+    "python-dotenv",
+    "seaborn",
+    "IPython",
+    "ipykernel", 
+    "iprogress",
+    "ipywidgets",
+    "tqdm",
+    "pyarrow",
+    "duckdb",
+    "openpyxl",
+    "pytask",
+    "xarray",
+    "rasterio",
+    "geopandas",
+    "pointpats",
+    "joblib==1.4.2",
+    "censusdata",
+    "us",
+    "ipfn",
+]
+
+[tool.uv.sources]
+gdal = [
+  { index = "gdal-wheels", marker = "sys_platform == 'linux'" },
+  { index = "geospatial_wheels", marker = "sys_platform == 'win32'" },
+]
+
+[[tool.uv.index]]
+name = "geospatial_wheels"
+url = "https://nathanjmcdougall.github.io/geospatial-wheels-index/"
+explicit = true
+
+[[tool.uv.index]]
+name = "gdal-wheels"
+url = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/simple"
+explicit = true
+
+[dependency-groups]
+dev = [
+    "black",
+    "jupyter",
+    "jupyterlab", 
+    "pylint",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.pylint]
+# Add pylint configuration here if needed

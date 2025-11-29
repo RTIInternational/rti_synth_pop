@@ -18,17 +18,15 @@ RTI has developed this code for creation of synthetic populations from the U.S. 
     │   ├── interim         <- Intermediate data that has been transformed.
     │   ├── processed       <- The final, canonical data sets for modeling.
     │   └── raw             <- The original, immutable data.
-    └── rti_synth_pop       <- Source code for use in this project.
+    └── src/rti_synth_pop       <- Source code for use in this project.
     │   ├── __init__.py     <- Makes rti_synth_pop a Python module.
     │   ├── config.py       <- Configuration file.
     │   ├── sample_pums.py  <- PUMS sampling.
     │   ├── task_*          <- task files with task functions to be executed on the command
     │                          line by invoking 'pytask'
-    ├── environment.yml     <- The requirements file for reproducing the analysis environment.
+    ├── pyproject.toml      <- The toml file for reproducing the analysis environment with uv.
     ├── .here               <- Empty file that will stop the search if none of the other criteria
     │                          apply when searching head of project.
-    ├── setup.py            <- Makes project pip installable (pip install -e .)
-    │                          so synth_pop can be imported.
     │── .gitignore          <- standard gitignore
     ├── LICENSE             <- License information
     ├── CITATION.cff        <- Citation metadata
@@ -37,7 +35,7 @@ RTI has developed this code for creation of synthetic populations from the U.S. 
 
 
 ---
-Project based on the [cookiecutter conda data science project template](https://github.com/jvelezmagic/cookiecutter-conda-data-science).
+Project uses a src-layout and targets us of uv over other options
 
 # Citing this Code
 The correct citation for this code is:
@@ -55,25 +53,11 @@ CC BY-NC-SA 4.0
 ## Installation
 ### Prerequisites
 
-- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html)
-- Optional [Mamba](https://mamba.readthedocs.io/en/latest/)
+- working installation of uv
 
-### Create environment
-
-```bash
-conda env create -f environment.yml
-activate rti_synth_pop
-```
-
-or 
-
-```bash
-mamba env create -f environment.yml
-activate rti_synth_pop
-```
-The packages necessary to run the project are now installed inside the conda environment.
-
-**Note: The following sections assume you are located in your conda environment.**
+uv sync - Install only the main dependencies
+uv sync --group dev - Install with development dependencies
+uv add --group dev <package> - Add development dependencies
 
 ### Set up project's module
 
@@ -319,3 +303,6 @@ When sampling households from the PUMS to fill our synthetic population a series
 12. Same as 11 but sample from the entire state with weights.
 
 NOTE: most households are found in steps 1 and 2, with just a small percentage requiring further steps. 
+
+
+
