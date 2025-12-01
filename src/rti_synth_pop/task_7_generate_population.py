@@ -112,6 +112,7 @@ for id_, kwargs in _ID_TO_KWARGS.items():
                 "hh_age",
                 "hh_income",
                 "hh_race",
+                "hh_ethnicity",
                 "size",
                 "serialno",
                 "state_fips",
@@ -154,5 +155,5 @@ for id_, kwargs in _ID_TO_KWARGS.items():
         # NOTE: hh_id + sporder combine to make a unique person ID in the population
         synthpop_persons_df = synthpop_df[["hh_id", "serialno"]].merge(
             pums_p_df, on=["serialno"], how="left"
-        )[["hh_id", "serialno", "sporder", "rac1p", "agep", "sex", "relshipp"]]
+        )[["hh_id", "serialno", "sporder", "rac1p", "hisp", "agep", "sex", "relshipp"]]
         synthpop_persons_df.to_parquet(output_path_persons, index=False)
