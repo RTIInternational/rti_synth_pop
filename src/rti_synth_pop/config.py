@@ -3,8 +3,15 @@
 # Kruskamp, N., Kery, C., & Rineer, J. rti_synth_pop [Computer software]. https://github.com/RTIInternational/rti_synth_pop
 # nkruskamp@rti.org , ckery@rti.org, jrin@rti.org
 
+import os
 import pandas as pd
 from pyprojroot import here
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Load secrets from environment variables
+CENSUS_API_KEY = os.getenv("CENSUS_API_KEY")
 
 # FOR THE USER: Currently you can configure the year and states you would like to run
 # the synthetic population here. There are two requirements demonstrated below:
@@ -15,7 +22,65 @@ from pyprojroot import here
 #       of those data.
 
 
-STATE_INFO = [("WY", "56")]
+# STATE_INFO = [("WY", "56")]
+# STATE_INFO = [("NC", "37")]
+STATE_INFO = [
+    ("AL", "01"),  # Alabama
+    ("AK", "02"),  # Alaska
+    ("AZ", "04"),  # Arizona
+    ("AR", "05"),  # Arkansas
+    ("CA", "06"),  # California
+    ("CO", "08"),  # Colorado
+    ("CT", "09"),  # Connecticut
+    ("DE", "10"),  # Delaware
+    ("FL", "12"),  # Florida
+    ("GA", "13"),  # Georgia
+    ("HI", "15"),  # Hawaii
+    ("ID", "16"),  # Idaho
+    ("IL", "17"),  # Illinois
+    ("IN", "18"),  # Indiana
+    ("IA", "19"),  # Iowa
+    ("KS", "20"),  # Kansas
+    ("KY", "21"),  # Kentucky
+    ("LA", "22"),  # Louisiana
+    ("ME", "23"),  # Maine
+    ("MD", "24"),  # Maryland
+    ("MA", "25"),  # Massachusetts
+    ("MI", "26"),  # Michigan
+    ("MN", "27"),  # Minnesota
+    ("MS", "28"),  # Mississippi
+    ("MO", "29"),  # Missouri
+    ("MT", "30"),  # Montana
+    ("NE", "31"),  # Nebraska
+    ("NV", "32"),  # Nevada
+    ("NH", "33"),  # New Hampshire
+    ("NJ", "34"),  # New Jersey
+    ("NM", "35"),  # New Mexico
+    ("NY", "36"),  # New York
+    ("NC", "37"),  # North Carolina
+    ("ND", "38"),  # North Dakota
+    ("OH", "39"),  # Ohio
+    ("OK", "40"),  # Oklahoma
+    ("OR", "41"),  # Oregon
+    ("PA", "42"),  # Pennsylvania
+    ("RI", "44"),  # Rhode Island
+    ("SC", "45"),  # South Carolina
+    ("SD", "46"),  # South Dakota
+    ("TN", "47"),  # Tennessee
+    ("TX", "48"),  # Texas
+    ("UT", "49"),  # Utah
+    ("VT", "50"),  # Vermont
+    ("VA", "51"),  # Virginia
+    ("WA", "53"),  # Washington
+    ("WV", "54"),  # West Virginia
+    ("WI", "55"),  # Wisconsin
+    ("WY", "56"),  # Wyoming
+    ("DC", "11"),  # District of Columbia
+    #("PR", "72"),  # Puerto Rico
+]
+
+
+
 YEAR = 2019
 SURVEY = "acs5"
 # ======================================================================================

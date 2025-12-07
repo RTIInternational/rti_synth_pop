@@ -41,6 +41,7 @@ dependencies = [
     "duckdb",
     "openpyxl",
     "pytask",
+    "pytask-parallel",
     "xarray",
     "rasterio",
     "geopandas",

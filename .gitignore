@@ -94,3 +94,5 @@ notebooks/**
 .pytask/pytask.sqlite3
 .DS_Store
 .vscode/**
+
+.env

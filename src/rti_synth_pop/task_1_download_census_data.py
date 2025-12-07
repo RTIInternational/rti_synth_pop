@@ -4,6 +4,7 @@
 # https://github.com/RTIInternational/rti_synth_pop
 # nkruskamp@rti.org , ckery@rti.org, jrin@rti.org
 # %%
+import os
 import io
 from pathlib import Path
 from typing import Annotated
@@ -18,7 +19,7 @@ import rasterio
 from rasterio.merge import merge as rio_merge
 from tqdm import tqdm
 
-from rti_synth_pop.config import CENSUS_COLS, STATE_INFO, SURVEY, YEAR, raw_data_dir
+from rti_synth_pop.config import CENSUS_API_KEY, CENSUS_COLS, STATE_INFO, SURVEY, YEAR, raw_data_dir
 
 
 # %%
@@ -55,7 +56,7 @@ for id_, kwargs in _ID_TO_KWARGS.items():
         cen_geo_cnty = censusdata.geographies(
             censusdata.censusgeo([("state", str(st_fips)), ("county", "*")]),
             SURVEY,
-            YEAR,
+            YEAR, key=CENSUS_API_KEY
         )
         df_list = []
         for cnty_cen_geo in tqdm(list(cen_geo_cnty.values())):
@@ -63,11 +64,11 @@ for id_, kwargs in _ID_TO_KWARGS.items():
                 list(cnty_cen_geo.geo) + [("block group", "*")]
             )
             df = (
-                censusdata.download(src=SURVEY, year=YEAR, geo=cen_geo, var=CENSUS_COLS)
+                censusdata.download(src=SURVEY, year=YEAR, geo=cen_geo, var=CENSUS_COLS, key=CENSUS_API_KEY)
                 .assign(
                     GEOID=lambda df: df.index.map(
                         lambda x: "".join([y[1] for y in x.geo])
-                    ),
+                    )
                 )
                 .set_index("GEOID")
             )
